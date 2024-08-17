@@ -18,9 +18,14 @@ function only needs to return the indices of any one such subarray.
 Also, the input list may contain both positive and negative integers.
 """
 def subarray_sum(nums, target):
-    my_dict = {}
+    my_dict = {0: -1}
+    current_sum = 0
     for index, num in enumerate(nums):
-        my_dict[num] = index
+        current_sum += num
+        if current_sum - target in my_dict:
+            output = [my_dict[current_sum - target] + 1, index]
+            break
+        my_dict[current_sum] = index
 
 nums = [1, 2, 3, 4, 5]
 target = 9
